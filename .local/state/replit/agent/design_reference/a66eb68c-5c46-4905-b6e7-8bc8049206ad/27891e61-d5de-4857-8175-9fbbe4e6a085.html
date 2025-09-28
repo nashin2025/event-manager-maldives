@@ -1,0 +1,1244 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maldives Event Manager</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                borderRadius: {
+                    lg: "var(--radius)",
+                    md: "calc(var(--radius) - 2px)",
+                    sm: "calc(var(--radius) - 4px)",
+                },
+                colors: {
+                    background: "var(--background)",
+                    foreground: "var(--foreground)",
+                    card: {
+                        DEFAULT: "var(--card)",
+                        foreground: "var(--card-foreground)",
+                    },
+                    popover: {
+                        DEFAULT: "var(--popover)",
+                        foreground: "var(--popover-foreground)",
+                    },
+                    primary: {
+                        DEFAULT: "var(--primary)",
+                        foreground: "var(--primary-foreground)",
+                    },
+                    secondary: {
+                        DEFAULT: "var(--secondary)",
+                        foreground: "var(--secondary-foreground)",
+                    },
+                    muted: {
+                        DEFAULT: "var(--muted)",
+                        foreground: "var(--muted-foreground)",
+                    },
+                    accent: {
+                        DEFAULT: "var(--accent)",
+                        foreground: "var(--accent-foreground)",
+                    },
+                    destructive: {
+                        DEFAULT: "var(--destructive)",
+                        foreground: "var(--destructive-foreground)",
+                    },
+                    border: "var(--border)",
+                    input: "var(--input)",
+                    ring: "var(--ring)",
+                }
+            }
+        }
+    };
+    </script>
+    <style>
+        :root {
+            --background: hsl(210 40% 98%);
+            --foreground: hsl(222.2 84% 4.9%);
+            --card: hsl(0 0% 100%);
+            --card-foreground: hsl(222.2 84% 4.9%);
+            --popover: hsl(0 0% 100%);
+            --popover-foreground: hsl(222.2 84% 4.9%);
+            --primary: hsl(200 89% 32%);
+            --primary-foreground: hsl(210 40% 98%);
+            --secondary: hsl(200 82% 58%);
+            --secondary-foreground: hsl(222.2 84% 4.9%);
+            --muted: hsl(210 40% 96%);
+            --muted-foreground: hsl(215.4 16.3% 46.9%);
+            --accent: hsl(24 95% 53%);
+            --accent-foreground: hsl(210 40% 98%);
+            --destructive: hsl(0 84.2% 60.2%);
+            --destructive-foreground: hsl(210 40% 98%);
+            --border: hsl(214.3 31.8% 91.4%);
+            --input: hsl(214.3 31.8% 91.4%);
+            --ring: hsl(200 89% 32%);
+            --radius: 0.5rem;
+            --font-sans: 'Inter', system-ui, sans-serif;
+        }
+        
+        .dark {
+            --background: hsl(222.2 84% 4.9%);
+            --foreground: hsl(210 40% 98%);
+            --card: hsl(222.2 84% 4.9%);
+            --card-foreground: hsl(210 40% 98%);
+            --popover: hsl(222.2 84% 4.9%);
+            --popover-foreground: hsl(210 40% 98%);
+            --primary: hsl(200 82% 58%);
+            --primary-foreground: hsl(222.2 84% 4.9%);
+            --secondary: hsl(217.2 32.6% 17.5%);
+            --secondary-foreground: hsl(210 40% 98%);
+            --muted: hsl(217.2 32.6% 17.5%);
+            --muted-foreground: hsl(215 20.2% 65.1%);
+            --accent: hsl(24 95% 53%);
+            --accent-foreground: hsl(222.2 84% 4.9%);
+            --destructive: hsl(0 62.8% 30.6%);
+            --destructive-foreground: hsl(210 40% 98%);
+            --border: hsl(217.2 32.6% 17.5%);
+            --input: hsl(217.2 32.6% 17.5%);
+            --ring: hsl(200 82% 58%);
+        }
+        
+        body {
+            font-family: var(--font-sans);
+        }
+        
+        .screen {
+            display: none;
+        }
+        
+        .screen.active {
+            display: block;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-background text-foreground antialiased">
+    <!-- @COMPONENT: App Container -->
+    <div id="app" class="min-h-screen">
+        
+        <!-- LOGIN SCREEN -->
+        <!-- @COMPONENT: LoginScreen -->
+        <div id="loginScreen" class="screen active">
+            <div class="min-h-screen bg-gradient-to-br from-primary to-secondary flex items-center justify-center p-4">
+                <div class="bg-card rounded-lg shadow-2xl w-full max-w-md p-8">
+                    <!-- A tropical Maldivian beach with clear turquoise water and palm trees -->
+                    <div class="text-center mb-8">
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=100" alt="Maldives islands view" class="mx-auto rounded-lg mb-4 h-20 w-full object-cover">
+                        <h1 class="text-2xl font-bold text-card-foreground">Maldives Event Manager</h1>
+                        <p class="text-muted-foreground mt-2">Manage events across all atolls</p>
+                    </div>
+                    
+                    <form data-mock="true" data-implementation="Integrate with Replit Auth">
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-card-foreground mb-2">Service Number</label>
+                                <input type="text" placeholder="Enter service number" class="w-full px-4 py-3 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-ring bg-input" data-bind="auth.serviceNumber">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-card-foreground mb-2">Password</label>
+                                <input type="password" placeholder="Enter password" class="w-full px-4 py-3 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-ring bg-input" data-bind="auth.password">
+                            </div>
+                        </div>
+                        
+                        <button type="submit" onclick="showScreen('dashboardScreen')" class="w-full mt-6 bg-primary text-primary-foreground py-3 rounded-md font-medium hover:bg-primary/90 transition-colors" data-event="click:handleLogin">
+                            Sign In
+                        </button>
+                        
+                        <div class="text-center mt-6">
+                            <a href="#" onclick="showScreen('registrationScreen')" class="text-primary hover:text-primary/80 text-sm">Don't have an account? Register</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- @END_COMPONENT: LoginScreen -->
+
+        <!-- REGISTRATION SCREEN -->
+        <!-- @COMPONENT: RegistrationScreen -->
+        <div id="registrationScreen" class="screen">
+            <div class="min-h-screen bg-gradient-to-br from-primary to-secondary flex items-center justify-center p-4">
+                <div class="bg-card rounded-lg shadow-2xl w-full max-w-md p-8">
+                    <div class="text-center mb-6">
+                        <h1 class="text-2xl font-bold text-card-foreground">Create Account</h1>
+                        <p class="text-muted-foreground mt-2">Join the event management team</p>
+                    </div>
+                    
+                    <form data-mock="true" data-implementation="Form validation and user registration">
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-card-foreground mb-2">Full Name</label>
+                                <input type="text" placeholder="Enter full name" class="w-full px-4 py-3 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-ring bg-input" data-bind="registration.fullName">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-card-foreground mb-2">Service Number</label>
+                                <input type="text" placeholder="Enter service number" class="w-full px-4 py-3 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-ring bg-input" data-bind="registration.serviceNumber">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-card-foreground mb-2">Mobile Number</label>
+                                <input type="tel" placeholder="+960 xxx-xxxx" class="w-full px-4 py-3 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-ring bg-input" data-bind="registration.mobile">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-card-foreground mb-2">Email</label>
+                                <input type="email" placeholder="Enter email address" class="w-full px-4 py-3 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-ring bg-input" data-bind="registration.email">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-card-foreground mb-2">Password</label>
+                                <input type="password" placeholder="Create password" class="w-full px-4 py-3 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-ring bg-input" data-bind="registration.password">
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="w-full mt-6 bg-primary text-primary-foreground py-3 rounded-md font-medium hover:bg-primary/90 transition-colors" data-event="click:handleRegistration">
+                            Create Account
+                        </button>
+                        
+                        <div class="text-center mt-6">
+                            <a href="#" onclick="showScreen('loginScreen')" class="text-primary hover:text-primary/80 text-sm">Already have an account? Sign in</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- @END_COMPONENT: RegistrationScreen -->
+
+        <!-- DASHBOARD SCREEN -->
+        <!-- @COMPONENT: DashboardScreen -->
+        <div id="dashboardScreen" class="screen">
+            <!-- Header -->
+            <header class="bg-card shadow-sm border-b border-border">
+                <div class="px-4 py-4">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <button class="lg:hidden" onclick="toggleSidebar()">
+                                <i class="fas fa-bars text-lg"></i>
+                            </button>
+                            <h1 class="text-xl font-semibold text-card-foreground">Dashboard</h1>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <span class="hidden sm:inline text-sm text-muted-foreground" data-bind="user.name">Ahmed Hassan</span>
+                            <span class="text-xs px-2 py-1 bg-primary text-primary-foreground rounded" data-bind="user.role">Admin</span>
+                            <button onclick="showScreen('loginScreen')" class="text-muted-foreground hover:text-foreground">
+                                <i class="fas fa-sign-out-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="flex">
+                <!-- Sidebar -->
+                <aside id="sidebar" class="hidden lg:block w-64 bg-card border-r border-border min-h-screen">
+                    <nav class="p-4 space-y-2">
+                        <a href="#" onclick="showDashboardTab('overview')" class="dashboard-nav-item active flex items-center space-x-3 px-3 py-2 rounded-md">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Overview</span>
+                        </a>
+                        <a href="#" onclick="showDashboardTab('events')" class="dashboard-nav-item flex items-center space-x-3 px-3 py-2 rounded-md">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Events</span>
+                        </a>
+                        <a href="#" onclick="showDashboardTab('members')" class="dashboard-nav-item flex items-center space-x-3 px-3 py-2 rounded-md">
+                            <i class="fas fa-users"></i>
+                            <span>Members</span>
+                        </a>
+                        <a href="#" onclick="showDashboardTab('map')" class="dashboard-nav-item flex items-center space-x-3 px-3 py-2 rounded-md">
+                            <i class="fas fa-map-marked-alt"></i>
+                            <span>Island Map</span>
+                        </a>
+                        <a href="#" onclick="showDashboardTab('archive')" class="dashboard-nav-item flex items-center space-x-3 px-3 py-2 rounded-md">
+                            <i class="fas fa-archive"></i>
+                            <span>Archive</span>
+                        </a>
+                        <a href="#" onclick="showDashboardTab('admin')" class="dashboard-nav-item flex items-center space-x-3 px-3 py-2 rounded-md">
+                            <i class="fas fa-cog"></i>
+                            <span>Admin Panel</span>
+                        </a>
+                    </nav>
+                </aside>
+
+                <!-- Main Content -->
+                <main class="flex-1 p-4 lg:p-6">
+                    <!-- Overview Tab -->
+                    <div id="overviewTab" class="dashboard-tab active">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                            <!-- Stats Cards -->
+                            <div class="bg-card rounded-lg p-6 shadow-sm border border-border">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-sm text-muted-foreground">Active Events</p>
+                                        <p class="text-2xl font-bold text-card-foreground" data-bind="stats.activeEvents">12</p>
+                                    </div>
+                                    <i class="fas fa-calendar-check text-primary text-2xl"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-card rounded-lg p-6 shadow-sm border border-border">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-sm text-muted-foreground">Total Members</p>
+                                        <p class="text-2xl font-bold text-card-foreground" data-bind="stats.totalMembers">156</p>
+                                    </div>
+                                    <i class="fas fa-users text-secondary text-2xl"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-card rounded-lg p-6 shadow-sm border border-border">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-sm text-muted-foreground">Islands Visited</p>
+                                        <p class="text-2xl font-bold text-card-foreground" data-bind="stats.visitedIslands">23</p>
+                                    </div>
+                                    <i class="fas fa-map-marker-alt text-accent text-2xl"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-card rounded-lg p-6 shadow-sm border border-border">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-sm text-muted-foreground">Completed Events</p>
+                                        <p class="text-2xl font-bold text-card-foreground" data-bind="stats.completedEvents">48</p>
+                                    </div>
+                                    <i class="fas fa-check-circle text-green-500 text-2xl"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recent Events -->
+                        <div class="bg-card rounded-lg shadow-sm border border-border p-6">
+                            <h3 class="text-lg font-semibold text-card-foreground mb-4">Recent Events</h3>
+                            <div class="space-y-3">
+                                <!-- @MAP: recentEvents.map(event => ( -->
+                                <div class="flex items-center justify-between p-3 bg-muted rounded-md" data-mock="true">
+                                    <div>
+                                        <p class="font-medium text-card-foreground" data-bind="event.name">Beach Cleanup - Hulhumalé</p>
+                                        <p class="text-sm text-muted-foreground" data-bind="event.date">Today, 2:00 PM</p>
+                                    </div>
+                                    <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full" data-bind="event.status">Active</span>
+                                </div>
+                                <!-- @END_MAP )) -->
+                                <div class="flex items-center justify-between p-3 bg-muted rounded-md" data-mock="true">
+                                    <div>
+                                        <p class="font-medium text-card-foreground">Coral Restoration - Malé</p>
+                                        <p class="text-sm text-muted-foreground">Tomorrow, 9:00 AM</p>
+                                    </div>
+                                    <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Scheduled</span>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-muted rounded-md" data-mock="true">
+                                    <div>
+                                        <p class="font-medium text-card-foreground">Community Meeting - Addu</p>
+                                        <p class="text-sm text-muted-foreground">Dec 15, 3:00 PM</p>
+                                    </div>
+                                    <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Planning</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Events Tab -->
+                    <div id="eventsTab" class="dashboard-tab">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-6">
+                            <h2 class="text-2xl font-bold text-card-foreground mb-4 sm:mb-0">Events Management</h2>
+                            <button onclick="showModal('createEventModal')" class="bg-primary text-primary-foreground px-4 py-2 rounded-md hover:bg-primary/90 transition-colors">
+                                <i class="fas fa-plus mr-2"></i>Create Event
+                            </button>
+                        </div>
+
+                        <!-- Filters -->
+                        <div class="bg-card rounded-lg p-4 shadow-sm border border-border mb-6">
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-card-foreground mb-2">Filter by Island</label>
+                                    <select class="w-full px-3 py-2 border border-border rounded-md bg-input focus:outline-none focus:ring-2 focus:ring-ring" data-bind="filters.island">
+                                        <option value="">All Islands</option>
+                                        <option value="male">Malé</option>
+                                        <option value="hulhumale">Hulhumalé</option>
+                                        <option value="addu">Addu City</option>
+                                        <option value="fuvahmulah">Fuvahmulah</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-card-foreground mb-2">Filter by Status</label>
+                                    <select class="w-full px-3 py-2 border border-border rounded-md bg-input focus:outline-none focus:ring-2 focus:ring-ring" data-bind="filters.status">
+                                        <option value="">All Status</option>
+                                        <option value="active">Active</option>
+                                        <option value="scheduled">Scheduled</option>
+                                        <option value="completed">Completed</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-card-foreground mb-2">Filter by Date</label>
+                                    <input type="date" class="w-full px-3 py-2 border border-border rounded-md bg-input focus:outline-none focus:ring-2 focus:ring-ring" data-bind="filters.date">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Events List -->
+                        <div class="space-y-4">
+                            <!-- @MAP: events.map(event => ( -->
+                            <div class="bg-card rounded-lg p-6 shadow-sm border border-border" data-mock="true">
+                                <div class="flex flex-col lg:flex-row lg:items-center justify-between">
+                                    <div class="flex-1">
+                                        <div class="flex items-center space-x-3 mb-2">
+                                            <h3 class="text-lg font-semibold text-card-foreground" data-bind="event.title">Marine Conservation Workshop</h3>
+                                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full" data-bind="event.status">Active</span>
+                                        </div>
+                                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm text-muted-foreground">
+                                            <div class="flex items-center">
+                                                <i class="fas fa-map-marker-alt mr-2"></i>
+                                                <span data-bind="event.location">Malé, North Malé Atoll</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i class="fas fa-calendar mr-2"></i>
+                                                <span data-bind="event.date">Dec 12, 2024</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i class="fas fa-clock mr-2"></i>
+                                                <span data-bind="event.time">10:00 AM - 4:00 PM</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i class="fas fa-users mr-2"></i>
+                                                <span data-bind="event.participants">24 participants</span>
+                                            </div>
+                                        </div>
+                                        <p class="mt-3 text-card-foreground" data-bind="event.description">Educational workshop on marine ecosystem preservation and coral reef protection techniques.</p>
+                                    </div>
+                                    <div class="flex space-x-2 mt-4 lg:mt-0">
+                                        <button class="px-3 py-1 text-primary hover:bg-primary/10 rounded transition-colors">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="px-3 py-1 text-accent hover:bg-accent/10 rounded transition-colors">
+                                            <i class="fas fa-archive"></i>
+                                        </button>
+                                        <button class="px-3 py-1 text-destructive hover:bg-destructive/10 rounded transition-colors">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- @END_MAP )) -->
+                            
+                            <div class="bg-card rounded-lg p-6 shadow-sm border border-border" data-mock="true">
+                                <div class="flex flex-col lg:flex-row lg:items-center justify-between">
+                                    <div class="flex-1">
+                                        <div class="flex items-center space-x-3 mb-2">
+                                            <h3 class="text-lg font-semibold text-card-foreground">Beach Cleanup Initiative</h3>
+                                            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Scheduled</span>
+                                        </div>
+                                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm text-muted-foreground">
+                                            <div class="flex items-center">
+                                                <i class="fas fa-map-marker-alt mr-2"></i>
+                                                <span>Hulhumalé, Kaafu Atoll</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i class="fas fa-calendar mr-2"></i>
+                                                <span>Dec 18, 2024</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i class="fas fa-clock mr-2"></i>
+                                                <span>7:00 AM - 11:00 AM</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i class="fas fa-users mr-2"></i>
+                                                <span>12 participants</span>
+                                            </div>
+                                        </div>
+                                        <p class="mt-3 text-card-foreground">Community-driven beach cleaning event to maintain coastal environment health.</p>
+                                    </div>
+                                    <div class="flex space-x-2 mt-4 lg:mt-0">
+                                        <button class="px-3 py-1 text-primary hover:bg-primary/10 rounded transition-colors">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="px-3 py-1 text-accent hover:bg-accent/10 rounded transition-colors">
+                                            <i class="fas fa-archive"></i>
+                                        </button>
+                                        <button class="px-3 py-1 text-destructive hover:bg-destructive/10 rounded transition-colors">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Members Tab -->
+                    <div id="membersTab" class="dashboard-tab">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-6">
+                            <h2 class="text-2xl font-bold text-card-foreground mb-4 sm:mb-0">Members Directory</h2>
+                            <div class="flex space-x-2">
+                                <button class="bg-secondary text-secondary-foreground px-4 py-2 rounded-md hover:bg-secondary/90 transition-colors">
+                                    <i class="fas fa-download mr-2"></i>Export
+                                </button>
+                                <button onclick="showModal('inviteMemberModal')" class="bg-primary text-primary-foreground px-4 py-2 rounded-md hover:bg-primary/90 transition-colors">
+                                    <i class="fas fa-plus mr-2"></i>Invite Member
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Search and Filter -->
+                        <div class="bg-card rounded-lg p-4 shadow-sm border border-border mb-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <input type="text" placeholder="Search members..." class="w-full px-4 py-2 border border-border rounded-md bg-input focus:outline-none focus:ring-2 focus:ring-ring" data-bind="search.query">
+                                </div>
+                                <div>
+                                    <select class="w-full px-3 py-2 border border-border rounded-md bg-input focus:outline-none focus:ring-2 focus:ring-ring" data-bind="search.role">
+                                        <option value="">All Roles</option>
+                                        <option value="admin">Admin</option>
+                                        <option value="coordinator">Coordinator</option>
+                                        <option value="member">Member</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Members Grid -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <!-- @MAP: members.map(member => ( -->
+                            <div class="bg-card rounded-lg p-6 shadow-sm border border-border" data-mock="true">
+                                <div class="flex items-center space-x-4 mb-4">
+                                    <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-semibold">
+                                        AH
+                                    </div>
+                                    <div class="flex-1">
+                                        <h3 class="font-semibold text-card-foreground" data-bind="member.name">Ahmed Hassan</h3>
+                                        <span class="text-xs px-2 py-1 bg-primary text-primary-foreground rounded" data-bind="member.role">Admin</span>
+                                    </div>
+                                </div>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex items-center text-muted-foreground">
+                                        <i class="fas fa-id-badge w-4 mr-3"></i>
+                                        <span data-bind="member.serviceNumber">SRV-001</span>
+                                    </div>
+                                    <div class="flex items-center text-muted-foreground">
+                                        <i class="fas fa-phone w-4 mr-3"></i>
+                                        <span data-bind="member.mobile">+960 777-1234</span>
+                                    </div>
+                                    <div class="flex items-center text-muted-foreground">
+                                        <i class="fas fa-envelope w-4 mr-3"></i>
+                                        <span data-bind="member.email">ahmed@example.mv</span>
+                                    </div>
+                                    <div class="flex items-center text-muted-foreground">
+                                        <i class="fas fa-calendar w-4 mr-3"></i>
+                                        <span data-bind="member.joinDate">Joined Dec 2023</span>
+                                    </div>
+                                </div>
+                                <div class="flex space-x-2 mt-4">
+                                    <button class="flex-1 px-3 py-2 text-primary border border-primary rounded hover:bg-primary/10 transition-colors">
+                                        <i class="fas fa-edit mr-2"></i>Edit
+                                    </button>
+                                    <button class="px-3 py-2 text-muted-foreground hover:text-foreground transition-colors">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- @END_MAP )) -->
+                            
+                            <div class="bg-card rounded-lg p-6 shadow-sm border border-border" data-mock="true">
+                                <div class="flex items-center space-x-4 mb-4">
+                                    <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center text-secondary-foreground font-semibold">
+                                        SM
+                                    </div>
+                                    <div class="flex-1">
+                                        <h3 class="font-semibold text-card-foreground">Sara Mohamed</h3>
+                                        <span class="text-xs px-2 py-1 bg-secondary text-secondary-foreground rounded">Coordinator</span>
+                                    </div>
+                                </div>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex items-center text-muted-foreground">
+                                        <i class="fas fa-id-badge w-4 mr-3"></i>
+                                        <span>SRV-024</span>
+                                    </div>
+                                    <div class="flex items-center text-muted-foreground">
+                                        <i class="fas fa-phone w-4 mr-3"></i>
+                                        <span>+960 888-5678</span>
+                                    </div>
+                                    <div class="flex items-center text-muted-foreground">
+                                        <i class="fas fa-envelope w-4 mr-3"></i>
+                                        <span>sara@example.mv</span>
+                                    </div>
+                                    <div class="flex items-center text-muted-foreground">
+                                        <i class="fas fa-calendar w-4 mr-3"></i>
+                                        <span>Joined Nov 2023</span>
+                                    </div>
+                                </div>
+                                <div class="flex space-x-2 mt-4">
+                                    <button class="flex-1 px-3 py-2 text-primary border border-primary rounded hover:bg-primary/10 transition-colors">
+                                        <i class="fas fa-edit mr-2"></i>Edit
+                                    </button>
+                                    <button class="px-3 py-2 text-muted-foreground hover:text-foreground transition-colors">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-card rounded-lg p-6 shadow-sm border border-border" data-mock="true">
+                                <div class="flex items-center space-x-4 mb-4">
+                                    <div class="w-12 h-12 bg-muted rounded-full flex items-center justify-center text-muted-foreground font-semibold">
+                                        RA
+                                    </div>
+                                    <div class="flex-1">
+                                        <h3 class="font-semibold text-card-foreground">Rahman Ali</h3>
+                                        <span class="text-xs px-2 py-1 bg-muted text-muted-foreground rounded">Member</span>
+                                    </div>
+                                </div>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex items-center text-muted-foreground">
+                                        <i class="fas fa-id-badge w-4 mr-3"></i>
+                                        <span>SRV-157</span>
+                                    </div>
+                                    <div class="flex items-center text-muted-foreground">
+                                        <i class="fas fa-phone w-4 mr-3"></i>
+                                        <span>+960 999-0123</span>
+                                    </div>
+                                    <div class="flex items-center text-muted-foreground">
+                                        <i class="fas fa-envelope w-4 mr-3"></i>
+                                        <span>rahman@example.mv</span>
+                                    </div>
+                                    <div class="flex items-center text-muted-foreground">
+                                        <i class="fas fa-calendar w-4 mr-3"></i>
+                                        <span>Joined Jan 2024</span>
+                                    </div>
+                                </div>
+                                <div class="flex space-x-2 mt-4">
+                                    <button class="flex-1 px-3 py-2 text-primary border border-primary rounded hover:bg-primary/10 transition-colors">
+                                        <i class="fas fa-edit mr-2"></i>Edit
+                                    </button>
+                                    <button class="px-3 py-2 text-muted-foreground hover:text-foreground transition-colors">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Map Tab -->
+                    <div id="mapTab" class="dashboard-tab">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-6">
+                            <h2 class="text-2xl font-bold text-card-foreground mb-4 sm:mb-0">Maldives Island Map</h2>
+                            <div class="flex space-x-2">
+                                <select class="px-3 py-2 border border-border rounded-md bg-input focus:outline-none focus:ring-2 focus:ring-ring" data-bind="map.filter">
+                                    <option value="all">All Islands</option>
+                                    <option value="visited">Visited Islands</option>
+                                    <option value="upcoming">Upcoming Events</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="bg-card rounded-lg shadow-sm border border-border overflow-hidden">
+                            <!-- Map Container -->
+                            <div class="relative h-96 lg:h-[500px] bg-blue-50">
+                                <!-- A satellite view of the Maldives islands showing the archipelago from above -->
+                                <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=500" alt="Maldives archipelago satellite view" class="w-full h-full object-cover">
+                                
+                                <!-- Map Overlays -->
+                                <div class="absolute inset-0 bg-blue-500/20">
+                                    <!-- Island Markers - Positioned to represent actual Maldivian atolls -->
+                                    <div class="absolute top-1/4 left-1/2 transform -translate-x-1/2" data-implementation="Interactive map markers with click events">
+                                        <div class="w-4 h-4 bg-primary rounded-full border-2 border-white shadow-lg cursor-pointer hover:scale-110 transition-transform" title="North Malé Atoll - 3 events"></div>
+                                        <span class="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs font-medium text-card-foreground bg-white px-2 py-1 rounded shadow">Malé</span>
+                                    </div>
+                                    
+                                    <div class="absolute top-1/3 left-1/2 transform -translate-x-1/2 translate-x-4">
+                                        <div class="w-4 h-4 bg-accent rounded-full border-2 border-white shadow-lg cursor-pointer hover:scale-110 transition-transform" title="Kaafu Atoll - 2 events"></div>
+                                        <span class="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs font-medium text-card-foreground bg-white px-2 py-1 rounded shadow">Hulhumalé</span>
+                                    </div>
+                                    
+                                    <div class="absolute top-3/4 left-1/2 transform -translate-x-1/2">
+                                        <div class="w-4 h-4 bg-secondary rounded-full border-2 border-white shadow-lg cursor-pointer hover:scale-110 transition-transform" title="Addu City - 1 event"></div>
+                                        <span class="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs font-medium text-card-foreground bg-white px-2 py-1 rounded shadow">Addu</span>
+                                    </div>
+                                    
+                                    <div class="absolute top-2/3 left-1/2 transform -translate-x-1/2 -translate-x-8">
+                                        <div class="w-3 h-3 bg-gray-400 rounded-full border-2 border-white shadow-lg cursor-pointer hover:scale-110 transition-transform" title="Fuvahmulah - No events"></div>
+                                        <span class="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs font-medium text-card-foreground bg-white px-2 py-1 rounded shadow">Fuvahmulah</span>
+                                    </div>
+                                </div>
+
+                                <!-- Map Legend -->
+                                <div class="absolute bottom-4 left-4 bg-card p-4 rounded-lg shadow-lg border border-border">
+                                    <h4 class="font-medium text-card-foreground mb-2">Legend</h4>
+                                    <div class="space-y-2 text-sm">
+                                        <div class="flex items-center space-x-2">
+                                            <div class="w-3 h-3 bg-primary rounded-full"></div>
+                                            <span class="text-muted-foreground">Active Events</span>
+                                        </div>
+                                        <div class="flex items-center space-x-2">
+                                            <div class="w-3 h-3 bg-accent rounded-full"></div>
+                                            <span class="text-muted-foreground">Upcoming Events</span>
+                                        </div>
+                                        <div class="flex items-center space-x-2">
+                                            <div class="w-3 h-3 bg-secondary rounded-full"></div>
+                                            <span class="text-muted-foreground">Past Events</span>
+                                        </div>
+                                        <div class="flex items-center space-x-2">
+                                            <div class="w-3 h-3 bg-gray-400 rounded-full"></div>
+                                            <span class="text-muted-foreground">No Events</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Island Details Panel -->
+                            <div class="p-6 bg-card">
+                                <h3 class="text-lg font-semibold text-card-foreground mb-4">Island Statistics</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                    <div class="text-center p-4 bg-muted rounded-lg">
+                                        <p class="text-2xl font-bold text-primary" data-bind="mapStats.totalIslands">26</p>
+                                        <p class="text-sm text-muted-foreground">Total Islands</p>
+                                    </div>
+                                    <div class="text-center p-4 bg-muted rounded-lg">
+                                        <p class="text-2xl font-bold text-accent" data-bind="mapStats.visitedIslands">8</p>
+                                        <p class="text-sm text-muted-foreground">Visited Islands</p>
+                                    </div>
+                                    <div class="text-center p-4 bg-muted rounded-lg">
+                                        <p class="text-2xl font-bold text-secondary" data-bind="mapStats.upcomingEvents">5</p>
+                                        <p class="text-sm text-muted-foreground">Upcoming Events</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Archive Tab -->
+                    <div id="archiveTab" class="dashboard-tab">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-6">
+                            <h2 class="text-2xl font-bold text-card-foreground mb-4 sm:mb-0">Event Archive</h2>
+                            <div class="flex space-x-2">
+                                <select class="px-3 py-2 border border-border rounded-md bg-input focus:outline-none focus:ring-2 focus:ring-ring" data-bind="archive.yearFilter">
+                                    <option value="2024">2024</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2022">2022</option>
+                                </select>
+                                <button class="bg-secondary text-secondary-foreground px-4 py-2 rounded-md hover:bg-secondary/90 transition-colors">
+                                    <i class="fas fa-download mr-2"></i>Export Archive
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Archive Summary -->
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                            <div class="bg-card rounded-lg p-6 shadow-sm border border-border">
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-card-foreground" data-bind="archive.stats.total">48</p>
+                                    <p class="text-sm text-muted-foreground">Total Archived</p>
+                                </div>
+                            </div>
+                            <div class="bg-card rounded-lg p-6 shadow-sm border border-border">
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-green-600" data-bind="archive.stats.successful">42</p>
+                                    <p class="text-sm text-muted-foreground">Successful</p>
+                                </div>
+                            </div>
+                            <div class="bg-card rounded-lg p-6 shadow-sm border border-border">
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-yellow-600" data-bind="archive.stats.cancelled">6</p>
+                                    <p class="text-sm text-muted-foreground">Cancelled</p>
+                                </div>
+                            </div>
+                            <div class="bg-card rounded-lg p-6 shadow-sm border border-border">
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-primary" data-bind="archive.stats.participants">1,247</p>
+                                    <p class="text-sm text-muted-foreground">Total Participants</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Archived Events List -->
+                        <div class="space-y-4">
+                            <!-- @MAP: archivedEvents.map(event => ( -->
+                            <div class="bg-card rounded-lg p-6 shadow-sm border border-border" data-mock="true">
+                                <div class="flex flex-col lg:flex-row lg:items-center justify-between">
+                                    <div class="flex-1">
+                                        <div class="flex items-center space-x-3 mb-2">
+                                            <h3 class="text-lg font-semibold text-card-foreground" data-bind="archived.title">Ocean Cleanup Campaign 2024</h3>
+                                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full" data-bind="archived.status">Completed</span>
+                                        </div>
+                                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm text-muted-foreground">
+                                            <div class="flex items-center">
+                                                <i class="fas fa-map-marker-alt mr-2"></i>
+                                                <span data-bind="archived.location">Multiple Islands</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i class="fas fa-calendar mr-2"></i>
+                                                <span data-bind="archived.completedDate">Oct 15, 2024</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i class="fas fa-users mr-2"></i>
+                                                <span data-bind="archived.participants">156 participants</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i class="fas fa-trophy mr-2"></i>
+                                                <span data-bind="archived.outcome">2.5 tons collected</span>
+                                            </div>
+                                        </div>
+                                        <p class="mt-3 text-card-foreground" data-bind="archived.summary">Large-scale ocean cleanup initiative spanning 8 islands across 3 atolls. Successfully removed marine debris and educated local communities.</p>
+                                    </div>
+                                    <div class="flex space-x-2 mt-4 lg:mt-0">
+                                        <button class="px-3 py-1 text-primary hover:bg-primary/10 rounded transition-colors">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="px-3 py-1 text-secondary hover:bg-secondary/10 rounded transition-colors">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- @END_MAP )) -->
+                            
+                            <div class="bg-card rounded-lg p-6 shadow-sm border border-border" data-mock="true">
+                                <div class="flex flex-col lg:flex-row lg:items-center justify-between">
+                                    <div class="flex-1">
+                                        <div class="flex items-center space-x-3 mb-2">
+                                            <h3 class="text-lg font-semibold text-card-foreground">Coral Restoration Project</h3>
+                                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Completed</span>
+                                        </div>
+                                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm text-muted-foreground">
+                                            <div class="flex items-center">
+                                                <i class="fas fa-map-marker-alt mr-2"></i>
+                                                <span>South Malé Atoll</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i class="fas fa-calendar mr-2"></i>
+                                                <span>Sep 22, 2024</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i class="fas fa-users mr-2"></i>
+                                                <span>89 participants</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i class="fas fa-trophy mr-2"></i>
+                                                <span>500 corals planted</span>
+                                            </div>
+                                        </div>
+                                        <p class="mt-3 text-card-foreground">Marine conservation project focused on coral reef restoration using sustainable techniques and community involvement.</p>
+                                    </div>
+                                    <div class="flex space-x-2 mt-4 lg:mt-0">
+                                        <button class="px-3 py-1 text-primary hover:bg-primary/10 rounded transition-colors">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="px-3 py-1 text-secondary hover:bg-secondary/10 rounded transition-colors">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Admin Panel Tab -->
+                    <div id="adminTab" class="dashboard-tab">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-6">
+                            <h2 class="text-2xl font-bold text-card-foreground mb-4 sm:mb-0">Admin Panel</h2>
+                            <span class="text-sm text-muted-foreground">Administrative controls and system settings</span>
+                        </div>
+
+                        <!-- Admin Actions Grid -->
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                            <!-- User Management -->
+                            <div class="bg-card rounded-lg p-6 shadow-sm border border-border">
+                                <h3 class="text-lg font-semibold text-card-foreground mb-4">User Management</h3>
+                                <div class="space-y-3">
+                                    <button class="w-full flex items-center justify-between p-3 bg-muted rounded-md hover:bg-muted/80 transition-colors">
+                                        <div class="flex items-center space-x-3">
+                                            <i class="fas fa-user-shield text-primary"></i>
+                                            <span class="text-card-foreground">Manage User Permissions</span>
+                                        </div>
+                                        <i class="fas fa-chevron-right text-muted-foreground"></i>
+                                    </button>
+                                    <button class="w-full flex items-center justify-between p-3 bg-muted rounded-md hover:bg-muted/80 transition-colors">
+                                        <div class="flex items-center space-x-3">
+                                            <i class="fas fa-users-cog text-secondary"></i>
+                                            <span class="text-card-foreground">Bulk User Operations</span>
+                                        </div>
+                                        <i class="fas fa-chevron-right text-muted-foreground"></i>
+                                    </button>
+                                    <button class="w-full flex items-center justify-between p-3 bg-muted rounded-md hover:bg-muted/80 transition-colors">
+                                        <div class="flex items-center space-x-3">
+                                            <i class="fas fa-ban text-destructive"></i>
+                                            <span class="text-card-foreground">Suspended Accounts</span>
+                                        </div>
+                                        <i class="fas fa-chevron-right text-muted-foreground"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- System Settings -->
+                            <div class="bg-card rounded-lg p-6 shadow-sm border border-border">
+                                <h3 class="text-lg font-semibold text-card-foreground mb-4">System Settings</h3>
+                                <div class="space-y-3">
+                                    <button class="w-full flex items-center justify-between p-3 bg-muted rounded-md hover:bg-muted/80 transition-colors">
+                                        <div class="flex items-center space-x-3">
+                                            <i class="fas fa-database text-accent"></i>
+                                            <span class="text-card-foreground">Database Management</span>
+                                        </div>
+                                        <i class="fas fa-chevron-right text-muted-foreground"></i>
+                                    </button>
+                                    <button class="w-full flex items-center justify-between p-3 bg-muted rounded-md hover:bg-muted/80 transition-colors">
+                                        <div class="flex items-center space-x-3">
+                                            <i class="fas fa-backup text-primary"></i>
+                                            <span class="text-card-foreground">Backup & Restore</span>
+                                        </div>
+                                        <i class="fas fa-chevron-right text-muted-foreground"></i>
+                                    </button>
+                                    <button class="w-full flex items-center justify-between p-3 bg-muted rounded-md hover:bg-muted/80 transition-colors">
+                                        <div class="flex items-center space-x-3">
+                                            <i class="fas fa-chart-line text-secondary"></i>
+                                            <span class="text-card-foreground">System Analytics</span>
+                                        </div>
+                                        <i class="fas fa-chevron-right text-muted-foreground"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Permission Management Table -->
+                        <div class="bg-card rounded-lg shadow-sm border border-border">
+                            <div class="p-6 border-b border-border">
+                                <h3 class="text-lg font-semibold text-card-foreground">Permission Management</h3>
+                                <p class="text-sm text-muted-foreground mt-1">Manage user roles and access permissions</p>
+                            </div>
+                            
+                            <div class="overflow-x-auto">
+                                <table class="w-full" data-implementation="User permission management system">
+                                    <thead class="bg-muted">
+                                        <tr>
+                                            <th class="text-left p-4 text-sm font-medium text-card-foreground">User</th>
+                                            <th class="text-left p-4 text-sm font-medium text-card-foreground">Current Role</th>
+                                            <th class="text-left p-4 text-sm font-medium text-card-foreground">Permissions</th>
+                                            <th class="text-left p-4 text-sm font-medium text-card-foreground">Last Active</th>
+                                            <th class="text-left p-4 text-sm font-medium text-card-foreground">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- @MAP: users.map(user => ( -->
+                                        <tr class="border-b border-border" data-mock="true">
+                                            <td class="p-4">
+                                                <div class="flex items-center space-x-3">
+                                                    <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-primary-foreground text-sm font-medium">
+                                                        SM
+                                                    </div>
+                                                    <div>
+                                                        <p class="font-medium text-card-foreground" data-bind="user.name">Sara Mohamed</p>
+                                                        <p class="text-sm text-muted-foreground" data-bind="user.email">sara@example.mv</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="p-4">
+                                                <select class="px-3 py-1 border border-border rounded bg-input text-sm focus:outline-none focus:ring-2 focus:ring-ring" data-bind="user.role">
+                                                    <option value="admin">Admin</option>
+                                                    <option value="coordinator" selected>Coordinator</option>
+                                                    <option value="member">Member</option>
+                                                </select>
+                                            </td>
+                                            <td class="p-4">
+                                                <div class="flex flex-wrap gap-1">
+                                                    <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded">Events</span>
+                                                    <span class="px-2 py-1 bg-secondary/10 text-secondary text-xs rounded">Members</span>
+                                                    <span class="px-2 py-1 bg-muted text-muted-foreground text-xs rounded">Admin</span>
+                                                </div>
+                                            </td>
+                                            <td class="p-4 text-sm text-muted-foreground" data-bind="user.lastActive">2 hours ago</td>
+                                            <td class="p-4">
+                                                <div class="flex space-x-2">
+                                                    <button class="px-2 py-1 text-primary hover:bg-primary/10 rounded transition-colors">
+                                                        <i class="fas fa-edit text-sm"></i>
+                                                    </button>
+                                                    <button class="px-2 py-1 text-destructive hover:bg-destructive/10 rounded transition-colors">
+                                                        <i class="fas fa-ban text-sm"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <!-- @END_MAP )) -->
+                                        
+                                        <tr class="border-b border-border" data-mock="true">
+                                            <td class="p-4">
+                                                <div class="flex items-center space-x-3">
+                                                    <div class="w-8 h-8 bg-secondary rounded-full flex items-center justify-center text-secondary-foreground text-sm font-medium">
+                                                        RA
+                                                    </div>
+                                                    <div>
+                                                        <p class="font-medium text-card-foreground">Rahman Ali</p>
+                                                        <p class="text-sm text-muted-foreground">rahman@example.mv</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="p-4">
+                                                <select class="px-3 py-1 border border-border rounded bg-input text-sm focus:outline-none focus:ring-2 focus:ring-ring">
+                                                    <option value="admin">Admin</option>
+                                                    <option value="coordinator">Coordinator</option>
+                                                    <option value="member" selected>Member</option>
+                                                </select>
+                                            </td>
+                                            <td class="p-4">
+                                                <div class="flex flex-wrap gap-1">
+                                                    <span class="px-2 py-1 bg-secondary/10 text-secondary text-xs rounded">Events</span>
+                                                    <span class="px-2 py-1 bg-muted text-muted-foreground text-xs rounded">Members</span>
+                                                    <span class="px-2 py-1 bg-muted text-muted-foreground text-xs rounded">Admin</span>
+                                                </div>
+                                            </td>
+                                            <td class="p-4 text-sm text-muted-foreground">1 day ago</td>
+                                            <td class="p-4">
+                                                <div class="flex space-x-2">
+                                                    <button class="px-2 py-1 text-primary hover:bg-primary/10 rounded transition-colors">
+                                                        <i class="fas fa-edit text-sm"></i>
+                                                    </button>
+                                                    <button class="px-2 py-1 text-destructive hover:bg-destructive/10 rounded transition-colors">
+                                                        <i class="fas fa-ban text-sm"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+
+            <!-- Bottom Navigation (Mobile) -->
+            <nav class="lg:hidden fixed bottom-0 left-0 right-0 bg-card border-t border-border">
+                <div class="grid grid-cols-5 gap-1 p-2">
+                    <button onclick="showDashboardTab('overview')" class="mobile-nav-item active flex flex-col items-center py-2 px-1 rounded">
+                        <i class="fas fa-chart-line text-lg mb-1"></i>
+                        <span class="text-xs">Overview</span>
+                    </button>
+                    <button onclick="showDashboardTab('events')" class="mobile-nav-item flex flex-col items-center py-2 px-1 rounded">
+                        <i class="fas fa-calendar-alt text-lg mb-1"></i>
+                        <span class="text-xs">Events</span>
+                    </button>
+                    <button onclick="showDashboardTab('members')" class="mobile-nav-item flex flex-col items-center py-2 px-1 rounded">
+                        <i class="fas fa-users text-lg mb-1"></i>
+                        <span class="text-xs">Members</span>
+                    </button>
+                    <button onclick="showDashboardTab('map')" class="mobile-nav-item flex flex-col items-center py-2 px-1 rounded">
+                        <i class="fas fa-map-marked-alt text-lg mb-1"></i>
+                        <span class="text-xs">Map</span>
+                    </button>
+                    <button onclick="showDashboardTab('admin')" class="mobile-nav-item flex flex-col items-center py-2 px-1 rounded">
+                        <i class="fas fa-cog text-lg mb-1"></i>
+                        <span class="text-xs">Admin</span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+        <!-- @END_COMPONENT: DashboardScreen -->
+
+        <!-- MODALS -->
+        <!-- Create Event Modal -->
+        <!-- @COMPONENT: CreateEventModal -->
+        <div id="createEventModal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 hidden">
+            <div class="bg-card rounded-lg w-full max-w-2xl max-h-screen overflow-y-auto">
+                <div class="p-6 border-b border-border">
+                    <div class="flex items-center justify-between">
+                        <h2 class="text-xl font-semibold text-card-foreground">Create New Event</h2>
+                        <button onclick="hideModal('createEventModal')" class="text-muted-foreground hover:text-foreground">
+                            <i class="fas fa-times text-lg"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <form class="p-6" data-mock="true" data-implementation="Event creation with validation">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-card-foreground mb-2">Event Title</label>
+                            <input type="text" placeholder="Enter event title" class="w-full px-4 py-3 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-ring bg-input" data-bind="newEvent.title">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-card-foreground mb-2">Island</label>
+                            <select class="w-full px-4 py-3 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-ring bg-input" data-bind="newEvent.island">
+                                <option value="">Select Island</option>
+                                <option value="male">Malé</option>
+                                <option value="hulhumale">Hulhumalé</option>
+                                <option value="addu">Addu City</option>
+                                <option value="fuvahmulah">Fuvahmulah</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-card-foreground mb-2">Date</label>
+                            <input type="date" class="w-full px-4 py-3 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-ring bg-input" data-bind="newEvent.date">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-card-foreground mb-2">Start Time</label>
+                            <input type="time" class="w-full px-4 py-3 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-ring bg-input" data-bind="newEvent.startTime">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-card-foreground mb-2">End Time</label>
+                            <input type="time" class="w-full px-4 py-3 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-ring bg-input" data-bind="newEvent.endTime">
+                        </div>
+                        
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-card-foreground mb-2">Description</label>
+                            <textarea rows="3" placeholder="Enter event description" class="w-full px-4 py-3 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-ring bg-input resize-none" data-bind="newEvent.description"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-end space-x-3">
+                        <button type="button" onclick="hideModal('createEventModal')" class="px-4 py-2 text-muted-foreground hover:text-foreground transition-colors">
+                            Cancel
+                        </button>
+                        <button type="submit" class="bg-primary text-primary-foreground px-6 py-2 rounded-md hover:bg-primary/90 transition-colors" data-event="click:handleCreateEvent">
+                            Create Event
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- @END_COMPONENT: CreateEventModal -->
+
+        <!-- Invite Member Modal -->
+        <!-- @COMPONENT: InviteMemberModal -->
+        <div id="inviteMemberModal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 hidden">
+            <div class="bg-card rounded-lg w-full max-w-md">
+                <div class="p-6 border-b border-border">
+                    <div class="flex items-center justify-between">
+                        <h2 class="text-xl font-semibold text-card-foreground">Invite New Member</h2>
+                        <button onclick="hideModal('inviteMemberModal')" class="text-muted-foreground hover:text-foreground">
+                            <i class="fas fa-times text-lg"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <form class="p-6" data-mock="true" data-implementation="Member invitation system">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-card-foreground mb-2">Email Address</label>
+                            <input type="email" placeholder="Enter email address" class="w-full px-4 py-3 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-ring bg-input" data-bind="invite.email">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-card-foreground mb-2">Role</label>
+                            <select class="w-full px-4 py-3 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-ring bg-input" data-bind="invite.role">
+                                <option value="member">Member</option>
+                                <option value="coordinator">Coordinator</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-card-foreground mb-2">Personal Message (Optional)</label>
+                            <textarea rows="3" placeholder="Add a personal message..." class="w-full px-4 py-3 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-ring bg-input resize-none" data-bind="invite.message"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-end space-x-3 mt-6">
+                        <button type="button" onclick="hideModal('inviteMemberModal')" class="px-4 py-2 text-muted-foreground hover:text-foreground transition-colors">
+                            Cancel
+                        </button>
+                        <button type="submit" class="bg-primary text-primary-foreground px-6 py-2 rounded-md hover:bg-primary/90 transition-colors" data-event="click:handleSendInvite">
+                            Send Invite
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- @END_COMPONENT: InviteMemberModal -->
+    </div>
+    <!-- @END_COMPONENT: App Container -->
+
+    <script>
+        // Navigation and UI State Management
+        (function() {
+            function showScreen(screenId) {
+                // Hide all screens
+                document.querySelectorAll('.screen').forEach(screen => {
+                    screen.classList.remove('active');
+                });
+                
+                // Show target screen
+                document.getElementById(screenId).classList.add('active');
+            }
+
+            function showDashboardTab(tabId) {
+                // Hide all tabs
+                document.querySelectorAll('.dashboard-tab').forEach(tab => {
+                    tab.classList.remove('active');
+                });
+                
+                // Show target tab
+                document.getElementById(tabId + 'Tab').classList.add('active');
+                
+                // Update navigation states
+                document.querySelectorAll('.dashboard-nav-item, .mobile-nav-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Add active class to clicked navigation items
+                event.target.closest('.dashboard-nav-item, .mobile-nav-item')?.classList.add('active');
+            }
+
+            function showModal(modalId) {
+                document.getElementById(modalId).classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function hideModal(modalId) {
+                document.getElementById(modalId).classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+
+            function toggleSidebar() {
+                const sidebar = document.getElementById('sidebar');
+                sidebar.classList.toggle('hidden');
+            }
+
+            // Apply styles based on active states
+            const style = document.createElement('style');
+            style.textContent = `
+                .dashboard-nav-item {
+                    color: var(--muted-foreground);
+                    transition: all 0.2s;
+                }
+                
+                .dashboard-nav-item:hover,
+                .dashboard-nav-item.active {
+                    background-color: var(--primary);
+                    color: var(--primary-foreground);
+                }
+                
+                .mobile-nav-item {
+                    color: var(--muted-foreground);
+                    transition: all 0.2s;
+                }
+                
+                .mobile-nav-item.active {
+                    color: var(--primary);
+                }
+                
+                .dashboard-tab {
+                    display: none;
+                }
+                
+                .dashboard-tab.active {
+                    display: block;
+                }
+            `;
+            document.head.appendChild(style);
+
+            // Make functions globally available
+            window.showScreen = showScreen;
+            window.showDashboardTab = showDashboardTab;
+            window.showModal = showModal;
+            window.hideModal = hideModal;
+            window.toggleSidebar = toggleSidebar;
+
+            // TODO: Implement user authentication with Replit Auth
+            // TODO: Integrate PostgreSQL database for user and event data
+            // TODO: Add form validation and error handling
+            // TODO: Implement real-time updates for event status
+            // TODO: Add interactive map functionality with Maldives geographic data
+            // TODO: Implement permission-based access control
+            // TODO: Add notification system for events and updates
+            // TODO: Integrate email system for member invitations
+            // TODO: Add data export functionality for reports
+            // TODO: Implement advanced filtering and search capabilities
+        })();
+    </script>
+</body>
+</html>
